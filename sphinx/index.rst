@@ -14,12 +14,16 @@ Contents
 
 
    info
-   outline
 
 .. toctree::
    :maxdepth: 2
 
+   outline
+
    homeworks
+
+.. toctree::
+   :maxdepth: 2
 
    class_repos
 
