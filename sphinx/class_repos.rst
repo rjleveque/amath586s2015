@@ -6,7 +6,22 @@ Class GitHub Repository
 
 All of the files that you may need to access for this class will be pushed
 to the GitHub repository `amath586s2015
-<https://github.com/rjleveque/amath586w2015>`_.
+<https://github.com/rjleveque/amath586s2015>`_.
+
+Git is a version control system that you might want to use for your own
+work. You are encouraged to do so!  If so, here's a list of some useful
+`git resources <http://www.clawpack.org/git_resources.html>`_.
+
+But for the purpose of this class it
+will primarily be used as an easy way to distribute materials, and you don't
+necessarily need to know much more than what's on this page to use it.  
+
+If you're not familiar with Git and/or do not have it installed on your
+laptop, see `Set Up Git <https://help.github.com/articles/set-up-git/>`_ on
+GitHub.  Note that GitHub is being used to host the public class repository, but
+you do not need a GitHub account to clone the repository.
+
+However, you do need Git installed for the commands below to work!
 
 To clone this repository::
 
