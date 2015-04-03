@@ -18,7 +18,7 @@ There will also be an open-book midterm exam and a take-home final exam.
 Schedule (tentative)
 ---------------------
 
-* Homework 1 due Thursday, April 9
+* :ref:`homework1` due Thursday, April 9
 * Homework 2 due Thursday, April 16
 * Homework 3 due Thursday, April 30
 * Homework 4 due Thursday, May 7

@@ -19,7 +19,7 @@ Instructor
 Class meeting times
 -------------------
 
-* MWF 2:30 - 3:20 pm in `Raitt 107 <uw.edu/maps/?rai>`_.
+* MWF 2:30 - 3:20 pm in Loew 219 (changed April 1)
 
 
 Discussion board
