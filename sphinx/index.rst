@@ -21,11 +21,13 @@ Contents
    outline
 
    homeworks
+   codes
 
 .. toctree::
    :maxdepth: 2
 
    class_repos
+   smc
 
 .. toctree::
    :maxdepth: 2
