@@ -29,7 +29,7 @@
 
 Homework is due to Canvas by 11:00pm PDT on the due date.
 
-To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2829773}
+To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2845007}
 
 
 %--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ Using forward Euler with a time step $k=0.01$,
 the computed solution is $U^N = (.9)^{100}\approx 2.65 \times
 10^{-5}$, and so $E^N \approx 2.65 \times 10^{-5}$.
 Since $L=10$ for this problem, the error bound (6.16) gives
-\eqlex{a}
+\begin{equation}\label{eq:1}
 \|E^N\| \leq e^{100}\cdot 10 \cdot \|\tau \|_\infty \approx 2.7 \times
 10^{44} \|\tau\|_\infty.
 \end{equation} 
@@ -84,7 +84,7 @@ exponential term.
 \item Show that for forward Euler applied to $u'=\lambda
 u$ we can take $M = |1+k\lambda|$.  Determine $M$ for the case $\lambda =
 -10$ and $k=0.01$ and use this in the bound from part (b).
-Note that this is much better than the bound \eqnex{a}.
+Note that this is much better than the bound \eqn{eq:1}.
 
 \end{enumerate}
 
