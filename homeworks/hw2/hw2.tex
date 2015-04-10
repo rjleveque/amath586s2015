@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#2}\hbox{Due Thursday, April 16, 2015}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2829773}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}
+
+
+The proof of convergence of 1-step methods in Section 6.3 shows that the 
+global error goes to zero as $k\goto 0$.
+However, this bound may be totally useless in estimating the actual error
+for a practical calculation.
+
+For example, suppose we solve $u'=-10u$ with $u(0)=1$ up to time $T=10$, so
+the true solution is $u(T)=e^{-100} \approx 3.7\times 10^{-44}$.
+Using forward Euler with a time step $k=0.01$,  
+the computed solution is $U^N = (.9)^{100}\approx 2.65 \times
+10^{-5}$, and so $E^N \approx 2.65 \times 10^{-5}$.
+Since $L=10$ for this problem, the error bound (6.16) gives
+\eqlex{a}
+\|E^N\| \leq e^{100}\cdot 10 \cdot \|\tau \|_\infty \approx 2.7 \times
+10^{44} \|\tau\|_\infty.
+\end{equation} 
+Here $\|\tau\|_\infty =|\tau^0| \approx 50 k$, so this upper bound on the
+error does go to zero as $k\goto 0$, but obviously it is not a realistic
+estimate of the error. It is too large by a factor of about $10^{50}$.
+
+The problem is that the estimate (6.16) is based on the Lipschitz
+constant $L=|\lambda|$, which gives a bound that grows exponentially in time
+even when the true and computed solutions are decaying exponentially.
+
+\begin{enumerate}
+\item Determine the computed solution and error bound (6.16) for the problem
+$u' = 10u$ with $u(0)=1$ up to time $T=10$.  Note that the error bound is
+the same as in the case above, but now it is a reasonable estimate of the
+actual error.
+
+\item A more realistic error bound for the case where $\lambda<0$ can be
+obtained by rewriting (6.17) as
+\[
+\unp = \Phi(U^n)
+\]
+and then determining the Lipschitz constant for the function $\Phi$.
+Call this constant $M$.  Prove that if $M\leq 1$  and $E^0=0$ then
+\[
+|E^n| \leq  T\|\tau\|_\infty
+\]
+for $nk\leq T$, a bound that is similar to (6.16) but without the
+exponential term.
+
+
+\item Show that for forward Euler applied to $u'=\lambda
+u$ we can take $M = |1+k\lambda|$.  Determine $M$ for the case $\lambda =
+-10$ and $k=0.01$ and use this in the bound from part (b).
+Note that this is much better than the bound \eqnex{a}.
+
+\end{enumerate}
+
+
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}
+
+Which of the following Linear Multistep Methods are convergent?  For 
+the ones that are not, are they inconsistent, or not zero-stable, or both?
+ \begin{enumerate}
+ \item $U^{n+2} = \half U^{n+1} + \half U^{n} + 2kf(U^{n+1})$
+ \item $\unp = U^n$ 
+ \item $U^{n+4} = U^{n} + \frac 4 3 k(f(U^{n+3})+f(U^{n+2})+f(U^{n+1}))$
+ \item $U^{n+3} = -U^{n+2} + U^{n+1} +U^{n}+2k(f(U^{n+2})+f(U^{n+1}))$.
+ \end{enumerate}
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3}
+
+\begin{enumerate}
+\item Determine the general solution to the linear difference equation
+$2U^{n+3} - 5U^{n+2} + 4U^{n+1} - U^n = 0$.
+
+{\bf Hint:} One root of the characteristic polynomial is at $\zeta=1$.
+
+\item Determine the solution to this difference equation with the starting
+values $U^0=11$, $U^1=5$, and $U^2=1$.  What is $U^{10}$?
+
+\item Consider the LMM
+\[
+2U^{n+3} - 5U^{n+2} + 4U^{n+1} - U^n = k(\beta_0 f(U^n) + \beta_1 f(U^{n+1})).
+\]
+For what values of $\beta_0$ and $\beta_1$ is local truncation error
+$\bigo(k^2)$?
+
+\item Suppose you use the values of $\beta_0$ and $\beta_1$ just determined
+in this LMM.  Is this a convergent method?
+
+\end{enumerate} 
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4}
+
+Consider the midpoint method $\unp = \unm + 2kf(U^n)$ applied to the test
+problem $u' = \lambda u$.  The method is zero-stable and second order
+accurate, and hence convergent.  If $\lambda<0$ then the true solution
+is exponentially decaying.
+
+On the other hand, for $\lambda<0$ and $k>0$ the point $z=k\lambda$ is never
+in the region of absolute stability of this method (see Example 7.7),
+and hence the numerical solution should be growing exponentially for any
+nonzero time step as $n\goto\infty$.  
+(And yet it converges to a function that is exponentially decaying.)
+
+Suppose we take $U^0=\eta$, use Forward Euler to generate $U^1$, and then
+use the midpoint method for $n=2,~3,~\ldots$.  Work out the exact solution
+$U^n$ by solving the linear difference equation and explain how the apparent
+paradox described above is resolved.
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 5}
+
+
+Perform numerical experiments to confirm the claim made in Example 7.10.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+\end{document}
+
