@@ -35,7 +35,7 @@ To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2845007}
 %--------------------------------------------------------------------------
 \vskip 1cm
 \hrule
-{\bf Problem 1}
+{\bf Problem 1}  (Corrected 11 April 2015)
 
 
 The proof of convergence of 1-step methods in Section 6.3 shows that the 
@@ -46,8 +46,8 @@ for a practical calculation.
 For example, suppose we solve $u'=-10u$ with $u(0)=1$ up to time $T=10$, so
 the true solution is $u(T)=e^{-100} \approx 3.7\times 10^{-44}$.
 Using forward Euler with a time step $k=0.01$,  
-the computed solution is $U^N = (.9)^{100}\approx 2.65 \times
-10^{-5}$, and so $E^N \approx 2.65 \times 10^{-5}$.
+the computed solution is $U^N = (.9)^{1000}\approx 1.75 \times
+10^{-46}$, and so $E^N \approx 3.7 \times 10^{-44}$.
 Since $L=10$ for this problem, the error bound (6.16) gives
 \begin{equation}\label{eq:1}
 \|E^N\| \leq e^{100}\cdot 10 \cdot \|\tau \|_\infty \approx 2.7 \times
@@ -55,7 +55,7 @@ Since $L=10$ for this problem, the error bound (6.16) gives
 \end{equation} 
 Here $\|\tau\|_\infty =|\tau^0| \approx 50 k$, so this upper bound on the
 error does go to zero as $k\goto 0$, but obviously it is not a realistic
-estimate of the error. It is too large by a factor of about $10^{50}$.
+estimate of the error. It is too large by a factor of about $10^{88}$.
 
 The problem is that the estimate (6.16) is based on the Lipschitz
 constant $L=|\lambda|$, which gives a bound that grows exponentially in time
