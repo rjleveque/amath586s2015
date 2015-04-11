@@ -166,14 +166,20 @@ is exponentially decaying.
 
 On the other hand, for $\lambda<0$ and $k>0$ the point $z=k\lambda$ is never
 in the region of absolute stability of this method (see Example 7.7),
-and hence the numerical solution should be growing exponentially for any
-nonzero time step as $n\goto\infty$.  
-(And yet it converges to a function that is exponentially decaying.)
+and hence it seems that the numerical solution should be growing
+exponentially for any nonzero time step.  (And yet it converges to
+a function that is exponentially decaying.)
 
+\begin{enumerate} 
+\item
 Suppose we take $U^0=\eta$, use Forward Euler to generate $U^1$, and then
 use the midpoint method for $n=2,~3,~\ldots$.  Work out the exact solution
 $U^n$ by solving the linear difference equation and explain how the apparent
 paradox described above is resolved.
+
+\item Devise some numerical experiments to illustrate the resolution of the
+paradox.
+\end{enumerate} 
 
 
 
