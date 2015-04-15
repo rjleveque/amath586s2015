@@ -27,6 +27,8 @@ notebook <http://ipython.org/notebook.html>`_ (recently renamed Jupyter
 notebooks since they also support Julia, R, and other languages besides
 Python).
 
+Notebooks can be found in `$AM586/codes/` if you want to run the notebook.  
+
 If you want to easily run notebooks without installing any software, you
 might try :ref:`smc`.
 
@@ -35,3 +37,11 @@ might try :ref:`smc`.
   illustrates Forward Euler and some stability issues.
   It can be found in `$AM586/codes/notebook1.ipynb` if you want to download and
   run the notebook.  
+
+- `Notebook 2
+  <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/classes/am586s2015/_static/notebook2.ipynb>`_
+  illustrates Forward Euler and some stability issues on a nonlinear problem.
+
+- `Notebook 3
+  <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/classes/am586s2015/_static/notebook3.ipynb>`_
+  illustrates the Boundary Locus Method to plot stability regions for LMMs.
