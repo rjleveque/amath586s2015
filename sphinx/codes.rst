@@ -45,3 +45,9 @@ might try :ref:`smc`.
 - `Notebook 3
   <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/classes/am586s2015/_static/notebook3.ipynb>`_
   illustrates the Boundary Locus Method to plot stability regions for LMMs.
+
+- `Notebook 4
+  <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/classes/am586s2015/_static/notebook4.ipynb>`_
+  illustrates plotting the stability region for a 1-step method
+
+
