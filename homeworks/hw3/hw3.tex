@@ -168,7 +168,7 @@ step just used in the $n$th step, and $C_n$ is a constant that will depend
 on how smooth the solution is near time $t_n$.  After each time step, we
 can estimate this by
 \begin{equation}\label{Cn}
-C_n \approx |U^{n+1}-\hat U^{n+1}|^{1/3}.
+C_n \approx \frac{|U^{n+1}-\hat U^{n+1}|}{k_n^3}.
 \end{equation} 
 If we were simply using the second order method and trying to achieve an
 absolute error less than some $\epsilon$ over the time interval $t_0 \leq t
