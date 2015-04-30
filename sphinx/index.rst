@@ -22,6 +22,7 @@ Contents
 
    homeworks
    codes
+   notes
 
 .. toctree::
    :maxdepth: 2
