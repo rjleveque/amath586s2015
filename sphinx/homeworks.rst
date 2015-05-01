@@ -7,7 +7,7 @@ Homework
 =============================================================
 
 
-There will be 6 homework assignments during the quarter, requiring a
+There will be 5 homework assignments during the quarter, requiring a
 combination of analytical and programming work.
 See :ref:`hwformat` below for information on the desired format.
 
@@ -24,7 +24,6 @@ Schedule (tentative)
 * Homework 4 due Thursday, May 7
 * Midterm: Friday, May 15
 * Homework 5 due Thursday, May 21
-* Homework 6 due Thursday, May 28
 * Final exam due Thursday, June 11
 
 
