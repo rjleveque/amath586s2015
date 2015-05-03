@@ -1,0 +1,248 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+% use different colors for links:
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.1,0.5,0.1}
+\definecolor{darkblue}{rgb}{0.2,0.2,1.0}
+\usepackage[colorlinks=true,linkcolor=darkblue,citecolor=darkblue,
+            filecolor=darkblue,urlcolor=darkgreen]{hyperref}
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#3}\hbox{Due Tuesday, May 12, 2015}}
+
+{\bf Name:} Your name here
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2860108}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}  
+
+
+Consider the following method for solving the heat equation
+$u_t=u_{xx}$:
+\[
+U_i^{n+2} = U_i^n + \frac{2k}{h^2}(U_{i-1}^{n+1} - 2U_i^{n+1} +
+U_{i+1}^{n+1}).
+\]
+\begin{enumerate}
+\item Determine the formal order of accuracy of this method 
+(in both space and time) based on computing the local truncation error.
+
+\item Suppose we take $k=\alpha h^2$ for some fixed $\alpha>0$ and refine
+the grid.  Show that this method fails to be 
+Lax-Richtmyer stable for any choice of $\alpha$.
+
+Do this in two ways: 
+\begin{itemize}
+\item Consider the MOL interpretation and the stability region of
+the time-discretization being used.
+\item Use von Neumann analysis and solve a quadratic equation for $g(\xi)$.
+\end{itemize} 
+
+\item What if we take $k=\alpha h^3$ for some fixed $\alpha>0$ and refine
+the grid. Would this method be stable?
+
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}  
+
+
+Consider the PDE
+\begin{equation}\label{diffdecay}
+u_t = \kappa u_{xx} - \gamma u,
+\end{equation}
+which models diffusion combined with decay provided $\kappa>0$ and $\gamma>0$.  
+Consider methods of the form
+\begin{equation}\label{ddtheta}
+U_j^{n+1} =U_j^n+{k\over 2h^2} [U_{j-1}^n-2U_j^n +U_{j-1}^n
++U_j^{n+1} - 2U_j^{n+1} + U_j^{n+1}]
+- k\gamma[(1-\theta)U_j^n + \theta U_j^{n+1}]
+\end{equation}
+where $\theta$ is a parameter.  In particular, if $\theta=1/2$ then the
+decay term is modeled with the same centered-in-time approach as the
+diffusion term and the method can be obtained by applying the Trapezoidal
+method to the MOL formulation of the PDE.   If $\theta=0$ then the decay
+term is handled explicitly.  For more general reaction-diffusion equations
+it may be advantageous to handle the reaction terms explicitly since these
+terms are generally nonlinear, so making them implicit would require solving
+nonlinear systems in each time step (whereas handling the diffusion term
+implicitly only gives a linear system to solve in each time step).
+
+\begin{enumerate}
+\item By computing the local truncation error, show that this method is
+$\bigo(k^p+h^2)$ accurate, where $p=2$ if $\theta = 1/2$ and $p=1$
+otherwise.
+\item Using von Neumann analysis, show that this method is unconditionally
+stable if $\theta \geq 1/2$.
+\item Show that if $\theta = 0$ then the method is stable provided $k\leq
+2/\gamma$, independent of $h$.
+\end{enumerate} 
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+
+\vskip 1cm
+\hrule
+{\bf Problem 3}  
+
+
+\begin{enumerate} 
+\item The m-file \verb+heat_CN.m+ from the book repository
+\url{http://faculty.washington.edu/rjl/fdmbook/} 
+solves the heat equation $u_t = \kappa u_{xx}$  (with $\kappa = 0.02$)
+using the Crank-Nicolson method.
+A Python version is available in \verb+$AM586/codes/heat_CN.py+.
+
+Run this code, and by changing the number of grid points, confirm that it is
+second-order accurate.  (Observe how the error at some fixed time such as $T=1$
+behaves as $k$ and $h$ go to zero with a fixed relation between $k$ and $h$,
+such as $k = 4h$.)
+
+Note that in order for the time step to evenly define the time interval the
+way this code is set up, you need to specify values such as $m=19, 39, 79$.
+(The number of interior grid points.)
+
+Produce a log-log plot of the error versus $h$.
+
+\item Modify this code to produce a new version that
+implements the TR-BDF2 method on the same problem.  Test it to confirm that
+it is also second order accurate.  Explain how you determined the proper
+boundary conditions in each stage of this Runge-Kutta method.
+
+\item Modify \verb+heat_CN.m+ to produce a new m-file \verb+heat_FE.m+ that
+implements the forward Euler explicit 
+method on the same problem.  Test it to confirm that
+it is $\bigo(h^2)$ accurate as $h\goto 0$ provided when $k = 24 h^2$ is
+used, which is within the stability limit for $\kappa = 0.02$.  Note how
+many more time steps are required than with Crank-Nicolson or TR-BDF2,
+especially on finer grids.
+
+\item Test \verb+heat_FE.m+ with $k = 26 h^2$, for which it should be
+unstable.  Note that the instability does not become apparent until about
+time 4.5 for the parameter values $\kappa = 0.02,~ m=39,~\beta = 150$.
+Explain why the instability takes several hundred time steps to appear, and
+why it appears as a sawtooth oscillation. 
+
+{\bf Hint:} What wave numbers $\xi$ are growing exponentially for these
+parameter values?  What is the initial magnitude of the most unstable
+eigenmode in the given initial data?  The expression (E.30) for the Fourier
+transform of a Gaussian may be useful.
+
+\end{enumerate}
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+
+\vskip 1cm
+\hrule
+{\bf Problem 4}  
+
+
+\begin{enumerate}
+
+\item Modify \verb+heat_CN.m+  (or \verb+heat_CN.py+)
+to solve the heat equation for
+$-1\leq x \leq 1$ with step function  initial data
+\begin{equation} \label{9.3a}
+u(x,0) = \begin{choices}  1 \when x<0\\  0 \when x\geq 0. \end{choices}
+\end{equation} 
+With appropriate Dirichlet boundary conditions, the exact solution is
+\begin{equation} \label{9.3b}
+u(x,t) = \half \, \text{erfc} \left(x / \sqrt{4 \kappa t}\right)
+\end{equation} 
+for $t>0$, where erfc is the {\em complementary error function}
+\[
+\text{erfc}(x) = \frac{2}{\sqrt{\pi}} \int_x^\infty e^{-z^2}\,dz.
+\]
+Note that {\tt erfc} is a built-in Matlab function and in Python you could
+use \verb+scipy.special.erfc+.
+
+\begin{enumerate}
+\item
+Use $\kappa = 0.02$ and
+test this method using $m=39$ and $k = 10h$ for $0\leq x \leq 1$.  
+Note that there is an initial rapid transient decay of the high
+wave numbers that is not captured well with this size time step.
+
+\item
+How small do you need to take the time step to get reasonable results?
+For a suitably small time step, explain why you get much better results by
+using $m=38$ than $m=39$.  What is the observed order of accuracy as $k\goto
+0$ when $k = \alpha h$ with $\alpha$ suitably small and $m$ even?
+
+Hint: You might also see what you get if you redefine the initial data so
+that $u(0,0)=1/2$ with $u(x,0)$ the same everywhere else, rather than
+$u(0,0) = 0$.
+
+\end{enumerate}
+
+\item Modify your TR-BDF2 solver from Problem 3
+to solve the heat equation for
+$-1\leq x \leq 1$ with step function  initial data as above.
+Test this routine using $k=10h$ and estimate the order of accuracy as
+$k\goto 0$ with $m$ even.  Why does the TR-BDF2 method work better than
+Crank-Nicolson?
+
+\end{enumerate} 
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+
+\end{document}
+
