@@ -90,8 +90,8 @@ u_t = \kappa u_{xx} - \gamma u,
 which models diffusion combined with decay provided $\kappa>0$ and $\gamma>0$.  
 Consider methods of the form
 \begin{equation}\label{ddtheta}
-U_j^{n+1} =U_j^n+{k\over 2h^2} [U_{j-1}^n-2U_j^n +U_{j-1}^n
-+U_j^{n+1} - 2U_j^{n+1} + U_j^{n+1}]
+U_j^{n+1} =U_j^n+{k\over 2h^2} [U_{j-1}^n-2U_j^n +U_{j+1}^n
++U_{j-1}^{n+1} - 2U_j^{n+1} + U_{j+1}^{n+1}]
 - k\gamma[(1-\theta)U_j^n + \theta U_j^{n+1}]
 \end{equation}
 where $\theta$ is a parameter.  In particular, if $\theta=1/2$ then the
