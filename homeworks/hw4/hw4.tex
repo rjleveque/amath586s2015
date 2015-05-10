@@ -151,7 +151,7 @@ implements the TR-BDF2 method on the same problem.  Test it to confirm that
 it is also second order accurate.  Explain how you determined the proper
 boundary conditions in each stage of this Runge-Kutta method.
 
-\item Modify \verb+heat_CN.m+ to produce a new m-file \verb+heat_FE.m+ that
+\item Modify the code to produce a new m-file or Python code \verb+heat_FE+ that
 implements the forward Euler explicit 
 method on the same problem.  Test it to confirm that
 it is $\bigo(h^2)$ accurate as $h\goto 0$ provided when $k = 24 h^2$ is
@@ -159,7 +159,7 @@ used, which is within the stability limit for $\kappa = 0.02$.  Note how
 many more time steps are required than with Crank-Nicolson or TR-BDF2,
 especially on finer grids.
 
-\item Test \verb+heat_FE.m+ with $k = 26 h^2$, for which it should be
+\item Test \verb+heat_FE+ with $k = 26 h^2$, for which it should be
 unstable.  Note that the instability does not become apparent until about
 time 4.5 for the parameter values $\kappa = 0.02,~ m=39,~\beta = 150$.
 Explain why the instability takes several hundred time steps to appear, and
