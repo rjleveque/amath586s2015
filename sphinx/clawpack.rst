@@ -9,7 +9,7 @@ Jupyter notebooks
 
 - `$AM586/codes/clawpack/advection_1d/advection_1d.ipynb` contains a
   notebook to be explored in lecture on May 29.  You can 
-  `view it here <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/classes/am586s2015/_static/advection_1d.ipynb>`_.
+  `view it here <http://nbviewer.ipython.org/url/faculty.washington.edu/rjl/notebooks/advection_1d.ipynb>`_.
 
   If you want to run it, you will have to be working on a computer with
   a recent version of Clawpack installed, along with a recent version of
