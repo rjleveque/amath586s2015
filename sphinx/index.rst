@@ -22,6 +22,7 @@ Contents
 
    homeworks
    codes
+   clawpack
    notes
    lectures
 
