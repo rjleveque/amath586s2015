@@ -25,7 +25,7 @@ Schedule (tentative)
 * `Midterm <_static/am586_midterm_review.pdf>`_: Friday, May 15  
 
 * :ref:`homework5` due Tuesday, May 26
-* Final exam due Thursday, June 11
+* :ref:`final` due Thursday, June 11
 
 
 .. _hwformat:

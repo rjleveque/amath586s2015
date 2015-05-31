@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+% use different colors for links:
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.1,0.5,0.1}
+\definecolor{darkblue}{rgb}{0.2,0.2,1.0}
+\usepackage[colorlinks=true,linkcolor=darkblue,citecolor=darkblue,
+            filecolor=darkblue,urlcolor=darkgreen]{hyperref}
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Take-home Final}\hbox{Due Thursday, June 11, 2015}}
+
+{\bf Name:} Your name here
+\vskip 5pt
+
+This exam is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see \url{https://canvas.uw.edu/courses/962872/assignments/2878942}
+
+{\bf Please work on this exam on your own!}  You may consult the literature
+and use the discussion board and office hours if questions arise.
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}  
+
+Consider the method
+\begin{equation} \label{a}
+U_j^{n+1} = U_j^n - \frac{ak}{2h}(U_j^n-U_{j-1}^n + U_j^{n+1}-U_{j-1}^{n+1}).
+\end{equation}
+for the advection equation $u_t+au_x=0$ on $0\leq x \leq 1$ with periodic
+boundary conditions, on a grid with spacing $h= 1 / (m+1)$ for some integer
+$m$.  
+
+\begin{enumerate}
+\item This method can be viewed as the trapezoidal method applied to an ODE
+system $U'(t) = AU(t)$ arising from a method of lines discretization of the
+advection equation.  What is the matrix $A$?  Don't forget the boundary
+conditions.
+
+\item Determine the eigenvalues of the matrix $A$.  {\bf Hint:} the
+eigenvectors are the same as for similar matrices you have seen.
+
+\item Suppose we want to fix the Courant number $ak/h$ as $k,~h\goto 0$.
+For what range of Courant numbers will the method be stable if $a>0$?
+If $a<0$?  Justify your answers in terms of eigenvalues of the matrix $A$
+and  the stability region of the trapezoidal method.
+
+\item For what range of $ak/h$ will the CFL condition be satisfied for this
+method (with periodic boundary conditions)?  Consider both $a>0$ and $a<0$.
+Is satisfying the CFL condition sufficient for stability in all cases?
+
+\end{enumerate} 
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}  
+
+Consider the dispersive PDE $u_t + \gamma u_{xxx} = 0$ with periodic boundary
+conditions on an interval $a \leq x \leq b$.  
+
+\begin{enumerate} 
+\item The third-derivative term could be approximated by either 
+\begin{equation} \label{2a}
+u_{xxx}(x_j,t_n) \approx \frac 1 {h^3}(-U_{j-2}^n + 3U_{j-1}^n - 3U_j^n + U_{j+1}^n)
+\end{equation} 
+or by 
+\begin{equation} \label{2b}
+u_{xxx}(x_j,t_n) \approx \frac 1 {h^3}(-U_{j-1}^n + 3U_{j}^n - 3U_{j+1}^n + U_{j+2}^n)
+\end{equation} 
+Show that either one is first-order accurate.  
+
+\item Suppose you plan to use a trapezoid discretization in time for a
+problem where $\gamma >0$.  Which form of spatial discretization
+\eqn{2a} or \eqn{2b} would be better?  Justify your answer.
+
+\item Implement a Crank-Nicolson type method for this equation, which uses
+the trapezoid method in time together with the spatial discretization from
+above that you determined is best for the case $\gamma >0$.
+Your implementation should allow arbitrary values of the endpoints $a$ and
+$b$ of the spatial interval, since two different choices are required below.
+
+Test your method by showing it is first order accurate 
+for initial data $u(x,0) = \sin(px)$ for integer $p$ such as $p=2$ on the
+interval $0 \leq x \leq 2\pi$.  Note that 
+you can compute the exact solution for such data.
+\end{enumerate} 
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3}  
+
+Now consider the KdV equation $u_t + 6uu_x + u_{xxx} = 0$.  
+This Korteweg - de Vries equation is famous --- read about it if you are not
+familiar with it.  Even though this equation is nonlinear,
+there are exact ``solitary wave'' solutions that consist of a translating wave of
+the form $u(x,t) = \eta(x-\alpha^2 t)$ for special initial data of the form
+\begin{equation} \label{3a}
+\eta(x) = \frac {\alpha^2}{2} \text{sech}^2\left(\alpha x/2\right)
+\end{equation} 
+for any choice of parameter $\alpha >0$.  Note that taller pulses
+propagate more rapidly.  An amazing feature of such problems is the
+way two such pulses interact as ``solitons''. 
+
+Construct a first-order accurate method by combining your solution to Problem 2
+with a first-order upwind method for the hyperbolic equation
+\begin{equation} \label{3b}
+u_t + 3(u^2)_x = 0.
+\end{equation} 
+Use the first-order fractional step approach to combine the methods --- i.e.
+in each time step, first advance the solution by taking a step with the $u_t
++ u_{xxx} = 0$ to get an intermediate solution $U^*$, and then use this as
+initial data for a step in which you solve \eqn{3b} by the upwind method for
+this nonlinear conservation law.  
+
+Again use periodic boundary conditions.  The true solution is not periodic,
+but decays exponentially to zero so as long as the interval is long enough
+relative to the width of the solitary wave, so this should not affect errors
+computed using a periodic extension of \eqn{3a}.
+
+Test your method on the interval $-1 \leq x \leq 3$ with $\alpha=10$ out to
+time $t=0.02$.  Demonstrate that your method is stable and first-order
+accurate by refining the grid with $r = k/h$ fixed.
+
+Estimate the maximum stable value of $r$ based on stability theory,
+justifying your estimate, and confirm that this is consistent with
+what you observe from your numerical method.
+
+\vskip 10pt
+Note that this is not a very accurate method!  If you want to play around
+with soliton interaction (optional) you might try the following data:
+\begin{equation} 
+\eta(x) = \frac {\alpha_1^2}{2} \text{sech}^2\left(\alpha_1 (x + 2)/2
+\right) + \frac {\alpha_2^2}{2} \text{sech}^2\left(\alpha_2 (x + 1)/2\right)
+\end{equation} 
+with $\alpha_1 = 25, ~\alpha_2= 16$ on the interval $-3\leq x \leq 2$.  
+
+If you want to read about (and try out) a much more accurate method
+for this problem, see for example Program 27 in Chapter 10 of
+``Spectral Methods in Matlab'' by L.\ N.\ Trefethen (SIAM 2000),
+available as an ebook at
+\url{http://epubs.siam.org/doi/book/10.1137/1.9780898719598}.
+The programs are available at
+\url{http://people.maths.ox.ac.uk/trefethen/spectral.html}.
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+\end{document}
+
